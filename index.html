@@ -1,51 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script
-    type="module"
-    src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
-  </script>
-
-  <title>AR Model Viewer</title>
-
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-    }
-
-    model-viewer {
-      width: 100vw;
-      height: 100vh;
-    }
-
-    #ar-button {
-      background: aqua;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      padding: 16px 24px;
-      font-size: 18px;
-    }
-  </style>
+  type="module"
+  src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+  ></script>
+  <title>AR</title>
 </head>
-
 <body>
   <model-viewer
-    src="models/cake.glb"
-    ios-src="models/cake.usdz"
-    camera-controls
-    shadow-intensity="1"
-    ar
-    ar-modes="webxr scene-viewer quick-look"
-    touch-action="pan-y"
-  >
-    <button slot="ar-button" id="ar-button">
-      Start AR
-    </button>
-  </model-viewer>
+  src="models/cake.glb"
+  style="width: 100vw; height: 90vh"
+  camera-controls
+  shadow-intensity="2"
+  touch-action="pan-y"
+  ar
+  ar-modes="webxr scene-viewer quick-look"
+
+  
+  > 
+  <button id="ar-button" slot="ar-button" >Start AR</button>
+
+</model-viewer>
 </body>
+<style>
+  #ar-button{
+    width:120px;
+    height: 60px;
+    position: absolute;
+    right: 35px;
+    bottom: 35px;
+    background-color:aqua;
+    color :white;
+    border:none;
+    font-size: 20px;
+  }
+
+</style>
 </html>
