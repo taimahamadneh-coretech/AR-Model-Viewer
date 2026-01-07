@@ -1,42 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script
-  type="module"
-  src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
-  ></script>
-  <title>AR</title>
-</head>
-<body>
-  <model-viewer
-  src="models/cake.glb"
-  style="width: 100vw; height: 90vh"
-  camera-controls
-  shadow-intensity="2"
-  touch-action="pan-y"
-  ar
-  ar-modes="webxr scene-viewer quick-look"
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Future Eats | AR Menu</title>
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+    ></script>
 
-  
-  > 
-  <button id="ar-button" slot="ar-button" >Start AR</button>
+    <style>
+      :root {
+        --primary-color: #934f3f;
+        --dark: #2c2c2c;
+        --light: #f4f4f4;
+      }
 
-</model-viewer>
-</body>
-<style>
-  #ar-button{
-    width:120px;
-    height: 60px;
-    position: absolute;
-    right: 35px;
-    bottom: 35px;
-    background-color:#934f3f;
-    color :white;
-    border:none;
-    font-size: 20px;
-  }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        background-color: var(--light);
+        color: var(--dark);
+      }
 
-</style>
+      header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 1rem;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .menu-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .menu-item {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .menu-item:hover {
+        transform: translateY(-5px);
+      }
+
+      /* The 3D Preview Area */
+      .preview-box {
+        width: 100%;
+        height: 250px;
+        background: #eee;
+        position: relative;
+      }
+
+      model-viewer {
+        width: 100%;
+        height: 100%;
+        --poster-color: transparent;
+      }
+
+      .details {
+        padding: 20px;
+      }
+
+      .details h3 {
+        margin: 0 0 10px 0;
+        color: var(--primary-color);
+      }
+
+      .details p {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      .button-group {
+        display: flex;
+        gap: 10px;
+      }
+
+      button {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: opacity 0.2s;
+      }
+
+      .btn-cart {
+        background-color: var(--dark);
+        color: white;
+      }
+
+      .btn-ar {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+
+      /* Custom AR Button inside model-viewer */
+      .ar-trigger {
+        background-color: white;
+        border-radius: 4px;
+        border: none;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 5px 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Future Eats</h1>
+      <p>View your meal in AR before you order</p>
+    </header>
+
+    <main class="menu-container">
+      <div class="menu-item">
+        <div class="preview-box">
+          <model-viewer
+            src="models/cake.glb"
+            ios-src="models/cake.usdz"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            camera-controls
+            poster="assets/cake-placeholder.jpg"
+            shadow-intensity="2"
+            alt="A 3D model of a chocolate cake"
+          >
+          </model-viewer>
+        </div>
+        <div class="details">
+          <h3>Signature Chocolate Cake</h3>
+          <p>
+            Rich, triple-layered dark chocolate cake with a velvety ganache
+            finish.
+          </p>
+          <div class="button-group">
+            <button class="btn-cart" onclick="alert('Added to cart!')">
+              Add to Cart
+            </button>
+            <button
+              class="btn-ar"
+              onclick="document.querySelector('model-viewer').activateAR()"
+            >
+              Start AR
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <div class="preview-box">
+          <model-viewer
+            src="models/burger.glb"
+            ios-src="models/burger.usdz"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            camera-controls
+            shadow-intensity="2"
+          >
+          </model-viewer>
+        </div>
+        <div class="details">
+          <h3>Classic Cheeseburger</h3>
+          <p>
+            Grass-fed beef, aged cheddar, and our secret house sauce on a
+            brioche bun.
+          </p>
+          <div class="button-group">
+            <button class="btn-cart" onclick="alert('Added to cart!')">
+              Add to Cart
+            </button>
+            <button class="btn-ar">Start AR</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Logic to handle "Start AR" button clicking the hidden AR button inside model-viewer
+      document.querySelectorAll(".btn-ar").forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+          const viewer = document.querySelectorAll("model-viewer")[index];
+          if (viewer.canActivateAR) {
+            viewer.activateAR();
+          } else {
+            alert("AR is not supported on this device/browser.");
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
