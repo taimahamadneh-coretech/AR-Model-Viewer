@@ -15,7 +15,7 @@ A modern web-based Augmented Reality (AR) restaurant menu that allows users to p
 
 - JavaScript 
 
-- <model-viewer>
+- model-viewer
 
 ---
 #### Getting Started
